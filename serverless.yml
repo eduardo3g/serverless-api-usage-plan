@@ -1,13 +1,41 @@
 service: apigateway-usage-plans
 
-frameworkVersion: '2'
-
+frameworkVersion: "2"
 
 provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
 
+  apiKeys:
+    - free: ${file(./default-customers.js):private}
+    - paid:
+        - myPaidKey
+        - zezinho@ze.com
+  usagePlan:
+    - free:
+        quota:
+          limit: 5
+          period: MONTH
+        throttle:
+          burstLimit: 200 # number of a request on the same time
+          rateLimit: 200 #number of requests per second
+    - paid:
+        quota:
+          limit: 1000
+          period: DAY
+        throttle:
+          burstLimit: 400
+          rateLimit: 50
+
+package:
+  excludeDevDependencies: true
+
 functions:
   hello:
     handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+          private: true
