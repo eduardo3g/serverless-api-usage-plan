@@ -21,3 +21,7 @@ TO="2021-08-07"
 curl --silent \
     "$HOST/dev/getUsage?keyId=$KEYID&usagePlanId=$USAGE_PLAN_ID&from=$FROM&to$TO" \
     | tee usage.log
+
+CUSTOMER_NAME="customer@test.com"
+curl --request POST --silent \
+    "$HOST/dev/addKey?name=$CUSTOMER_NAME&usagePlanId=$USAGE_PLAN_ID
