@@ -25,8 +25,8 @@ const usage = async (event) => {
 
   const usage = await apiGateway
     .getUsage({
-      startDate: moment(from).format("YYY-MM-DD"),
-      endDate: moment(to).format("YYY-MM-DD"),
+      startDate: moment(from).format("YYYY-MM-DD"),
+      endDate: moment(to).format("YYYY-MM-DD"),
       usagePlanId,
       keyId,
     })
