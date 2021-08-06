@@ -8,5 +8,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "serverless": "^2.53.1",
+    "serverless-offline": "^8.0.0"
+  }
 }
